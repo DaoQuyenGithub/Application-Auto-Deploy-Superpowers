@@ -2,11 +2,11 @@
   become: true
   copy:
     src: ~/project/artifact.tar.gz
-    dest: /home/udacity/artifact.tar.gz
+    dest: /home/ubuntu/artifact.tar.gz
 
 - name: extract the zipped
   shell: |
-    cd home/udacity
+    cd home/ubuntu
     tar -xzvf artifact.tar.gz -C .
 
 - name: Executing
