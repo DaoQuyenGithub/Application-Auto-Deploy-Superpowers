@@ -298,8 +298,8 @@ jobs:
           name: Install dependencies
           command: |
             cd backend
-            apk add --update ansible curl nodejs npm
-            apk add --no-cache aws-cli
+            apk add --update curl nodejs npm
+            pip install awscli
       - run:
           name: Backend smoke test
           command: |
