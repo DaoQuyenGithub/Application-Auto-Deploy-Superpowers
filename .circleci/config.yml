@@ -228,6 +228,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            cd frontend
             apk add --update --no-cache tar gzip nodejs npm ansible aws-cli
       - run:
           name: Get backend url
@@ -263,6 +264,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            cd backend
             apk add --update --no-cache tar gzip nodejs npm aws-cli ansible 
       - restore_cache:
           keys: [build-backend]      
