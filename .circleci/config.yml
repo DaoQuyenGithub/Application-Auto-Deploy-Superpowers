@@ -261,15 +261,17 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - '43:a1:0f:f9:07:c4:2c:cc:e7:65:06:65:ce:cf:b4:8a'
+      - attach_workspace:
+          at: ~/
       - run:
           name: Install dependencies
           command: |
             cd backend
             apk add --update --no-cache tar gzip nodejs npm aws-cli ansible 
-      - restore_cache:
-          keys: [build-backend]      
-      - attach_workspace:
-          at: ~/
+      # - restore_cache:
+      #     keys: [build-backend]      
+      # - attach_workspace:
+      #     at: ~/
       - run:
           name: Deploy backend
           command: |
@@ -290,7 +292,6 @@ jobs:
     docker:
       - image: python:3.11-rc-alpine
     steps:
-      # Checkout code from git
       - checkout
       - attach_workspace:
           at: ~/
