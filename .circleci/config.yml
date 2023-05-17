@@ -292,13 +292,14 @@ jobs:
     steps:
       # Checkout code from git
       - checkout
+      - attach_workspace:
+          at: ~/
       - run:
           name: Install dependencies
           command: |
+            cd backend
             apk add --update ansible curl nodejs npm
             apk add --no-cache aws-cli
-      - attach_workspace:
-          at: ~/
       - run:
           name: Backend smoke test
           command: |
