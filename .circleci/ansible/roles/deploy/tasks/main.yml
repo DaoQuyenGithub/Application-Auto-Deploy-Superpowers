@@ -2,17 +2,17 @@
   become: true
   copy:
     src: ~/project/artifact.tar.gz
-    dest: /home/udacity/artifact.tar.gz
+    dest: /home/ubuntu/artifact.tar.gz
 
 - name: extract zip
   shell: |
-    cd home/udacity
+    cd home/ubuntu
     tar -xzvf artifact.tar.gz -C.
 
 - name: Executing
   become: true
   shell: |
-    cd /home/udacity
+    cd /home/ubuntu
     npm install
     pm2 stop default
     pm2 start npm -- start
