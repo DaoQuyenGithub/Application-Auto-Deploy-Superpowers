@@ -230,17 +230,14 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: amazon/aws-cli
+      - image: python:3.11-rc-alpine
     steps:
       - checkout
       - run:
           name: Install dependencies
           command: |
             cd frontend
-            yum install -y tar gzip 
-            yum install -y gcc-c++ make
-            curl -sL https://rpm.nodesource.com/setup_16.x | bash -
-            yum -y install nodejs 
+            apk add --update --no-cache tar gzip nodejs npm ansible aws-cli
       - run:
           name: Get backend url
           command: |
