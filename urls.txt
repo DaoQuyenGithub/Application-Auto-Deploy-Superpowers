@@ -2,3 +2,9 @@ link github: https://github.com/DaoQuyenGithub/project-3.git
 
 
 link s3: http://udapeople-10a5053.s3-website-us-east-1.amazonaws.com/
+
+
+prometheus: http:/ec2-44-204-2-245.compute-1.amazonaws.com:9090/targets
+
+
+Selling CI/CD to your Team/Organization in the CICD.pptx
