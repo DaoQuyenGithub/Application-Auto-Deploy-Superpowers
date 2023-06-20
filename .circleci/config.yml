@@ -19,10 +19,7 @@ commands:
               --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}"
 
   revert-migrations:
-    description: Revert the last migration if successfully run in the current workflow.
-    parameters:
-      workflow_id:
-        type: string     
+    description: Revert the last migration if successfully run in the current workflow.    
     steps:
       - run:
           name: Revert migrations
@@ -32,12 +29,12 @@ commands:
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
             SUCCESS=$(curl --insecure  https://kvdb.io/QSKoW3dB8GHFU6PDx96uUT/migration_${CIRCLE_WORKFLOW_ID:0:7})
             # Logic for reverting the database state
-            if [[ $VALUE -eq 1 ]]
+            if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
               npm install
-              npm run migration:revert
-            fi  
+              npm run migrations:revert
+            fi 
             
 jobs:
   build-frontend:
@@ -236,6 +233,9 @@ jobs:
             then
               echo "insecure" >> ~/.curlrc
               curl https://kvdb.io/QSKoW3dB8GHFU6PDx96uUT/migration_${CIRCLE_WORKFLOW_ID:0:7} -d '1'
+            fi
+            else
+              curl https://kvdb.io/QSKoW3dB8GHFU6PDx96uUT/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '0'
             fi
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7} 
