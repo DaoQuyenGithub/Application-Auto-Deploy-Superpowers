@@ -325,7 +325,7 @@ jobs:
 
   smoke-test:
     docker:
-      - image: python:3.11-rc-alpine
+      - image: amazon/aws-cli:latest 
     steps:
       - checkout
       - attach_workspace:
@@ -333,9 +333,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            cd backend
-            apk add --update curl nodejs npm
-            pip install awscli
+            yum install -y tar gzip
       - run:
           name: Backend smoke test
           command: |
